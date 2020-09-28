@@ -19,6 +19,43 @@ public class main {
         }
     }
 
+    public static class Fraction {
+        int n, m;
+
+        Fraction(){
+            n = 0;
+            m = 1;
+        }
+
+        Fraction(int a, int b){
+            n = a;
+            m = b;
+            this.reduction(a, b);
+        }
+
+        public static int nod(int a, int b) {
+            return b == 0 ? a : nod(b, a % b);
+        }
+        
+        public void reduction(int a, int b) {
+            int nod = nod(a, b);
+            n /= nod;
+            m /= nod;
+        }
+
+        public int getN(){
+            return n;
+        }
+
+        public int getM(){
+            return m;
+        }
+
+        public String toString(){
+            return " " + n + "/" + m;
+        }
+    }
+
     public static class Reader {
         ArrayList<String> container = new ArrayList<String>();
 
@@ -130,5 +167,9 @@ public class main {
             c.calculate(string);
             System.out.println(c.GetTotalValue());
         }
+
+        Fraction f = new Fraction(4, 256);
+
+        System.out.println(f.toString());
     }
 }
